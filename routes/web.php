@@ -13,7 +13,7 @@
 
 Route::view('/', 'welcome');
 
-
+Route::get('/podcast','PodcastControlelr@index');
 
 // Route::get('/hello', function(){
 //     return 'Hello World';

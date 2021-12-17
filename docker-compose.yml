@@ -14,8 +14,8 @@ services:
       - .docker.env
     environment:
       CONTAINER_ROLE: app
-    # volumes:
-    #   - .:/var/www/html
+    volumes:
+      - .:/var/www/html
     ports:
       - 8080:80
   scheduler:
