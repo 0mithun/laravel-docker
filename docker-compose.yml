@@ -7,8 +7,10 @@ services:
     build:
       context: .
       dockerfile: docker/Dockerfile
-    volumes:
-      - .:/var/www/html
+    env_file:
+      - .docker.env
+    # volumes:
+    #   - .:/var/www/html
     ports:
       - 8080:80
   mysql:
