@@ -25,7 +25,8 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('inspire')
-                 ->everyMinute();
+                 ->everyMinute()
+                 ->appendOutputTo('/proc/1/fd/1');
     }
 
     /**
