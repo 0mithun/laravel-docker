@@ -15,16 +15,20 @@ fi
 echo "The role is $role..."
 
 if [ "$role" = "app" ]; then
-    exec supervisord -c /etc/supervisor/supervisord.conf
+    ln -sf /etc/supervisor/conf.d-available/app.conf /etc/supervisor/conf.d/app.conf
 elif [ "$role" = "scheduler" ]; then
-   while [ true ]
-   do
-    php /var/www/html/artisan schedule:run --verbose --no-interaction & sleep 60
-   done
+    ln -sf /etc/supervisor/conf.d-available/scheduler.conf /etc/supervisor/conf.d/scheduler.conf
+#    while [ true ]
+#    do
+#     php /var/www/html/artisan schedule:run --verbose --no-interaction & sleep 60
+#    done
 elif [ "$role" = "queue" ]; then
-    echo "Running the queue:work"
-    exec php /var/www/html/artisan queue:work --verbose --tries=3 --timeout=90
+    ln -sf /etc/supervisor/conf.d-available/queue.conf /etc/supervisor/conf.d/queue.conf
+    # echo "Running the queue:work"
+    # exec php /var/www/html/artisan queue:work --verbose --tries=3 --timeout=90
 else 
     echo "Could not match the container role \"$role\""
     exit 1
 fi
+
+exec supervisord -c /etc/supervisor/supervisord.conf
