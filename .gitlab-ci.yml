@@ -13,8 +13,7 @@ build-master-php:
   before_script:
     - set -xe
     - apt-get update -yqq
-    - apt-get install git wget zip unzip -yqq
-    - 
+    - apt-get install git wget zip unzip -yqq 
     # Install Composer dependencies
 
     - wget https://composer.github.io/installer.sig -O - -q | tr -d '\n' > installer.sig
